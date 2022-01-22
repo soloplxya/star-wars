@@ -2,7 +2,8 @@ import IndexItem from "./indexItem"
 
 const IndexList = () => {
     return (
-        <div> 
+        <div 
+            style={{display: "flex", flexDirection: "row"}}> 
             <IndexItem label="People" /> 
             <IndexItem label="Starships" /> 
         </div> 
