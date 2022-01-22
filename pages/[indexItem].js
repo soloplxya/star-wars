@@ -2,16 +2,15 @@ import axios from "axios";
 import { useRouter } from 'next/router';
 import { useEffect, useState, useRef } from "react"; 
 import GenreItem from '../components/genre/genreItem';
-import { Hearts } from 'react-loader-spinner';
+import { BallTriangle } from 'react-loader-spinner';
 
 
 const IndexItem = (context) => {
-    const isLoading = false; 
     const { asPath } = useRouter(); 
     const api_endPoint = asPath.substring(1,asPath.length).toLocaleLowerCase().toString();
     const didmount = useRef();
      
-
+    const [loading, setLoading] = useState(false)
     const [currentUrl, setCurrentUrl] = useState("")
 
     // types of data 
@@ -20,13 +19,13 @@ const IndexItem = (context) => {
    
     // fetchData from different api 
     function fetchData() {
-        isLoading = true; 
+        setLoading(true); 
         if (api_endPoint == "people") {
             axios.get(
                 "https://swapi.dev/api/" + api_endPoint
                 ).then(response => {
                     setPeople(response.data.results)
-                    isLoading = false;
+                    setLoading(false); 
             }).catch(error => {
                 console.log("Task retrieving error", error)
             })
@@ -36,7 +35,7 @@ const IndexItem = (context) => {
                 ).then(response => {
                     console.log(response.data.results);
                     setStarships(response.data.results)
-                    isLoading = false;
+                    setLoading(false); 
             }).catch(error => {
                 console.log("Task retrieving error", error)
             })
@@ -53,56 +52,67 @@ const IndexItem = (context) => {
         didmount.current = true; 
     }, [api_endPoint]); 
 
-    
-    if (didmount) {
-        
-        if (currentUrl == "people" ) {
-            console.log('here')
 
-            return (
-                <div style={{height:"100vh", backgroundColor: '#364156'}}>
-                    <div style={{ display: 'flex', justifyContent:'center', alignItems:'center'}} >
-                        <h1> {api_endPoint} </h1>
-                    </div> 
-                    { isLoading ? <Hearts arialLabel="loading-indicator"/> : ""}
-                    <div
-                        style={{display:"flex", margin: "40px", flexDirection:"row", flexWrap:"wrap"}}
-                    > 
-                        {
-                        people.map((x,i) => {
-                            return <GenreItem key={i} label={x.name} /> 
-                        })
-                        }
-                    </div> 
-                </div>
-            )
 
-        } else if (currentUrl == "starships") {
-            return (
-                <div style={{height:"100vh", backgroundColor: '#364156'}}>
-                    <div style={{ display: 'flex', justifyContent:'center', alignItems:'center'}} >
-                        <h1> {api_endPoint} </h1>
-                    </div> 
-                    { isLoading ? <Hearts arialLabel="loading-indicator"/> : ""}
-                    <div
-                        style={{display:"flex", margin: "40px", flexDirection:"row", flexWrap:"wrap"}}
-                    > 
-                        {
-                        starships.map((x,i) => {
-                            return <GenreItem key={i} label={x.name} /> 
-                        })
-                        }
-                    </div> 
-                </div>
-            )
-        } else {
-            console.log("case here")
-            return "test"
-        }
+    if (currentUrl == "people" ) {
+        return (
+            <body style={{height: "200vh", backgroundColor: '#364156'}}>
+                <div style={{ display: 'flex', justifyContent:'center', alignItems:'center', flexDirection:"column"}} >
+                    <h1> {api_endPoint} </h1> 
+                    { loading 
+                        ? <BallTriangle
+                            heigth="100"
+                            width="100"
+                            color="grey"
+                            arialLabel="loading-indicator"
+                        /> 
+                        : ""
+                    }
+                </div> 
+                <div
+                    style={{display:"flex", margin: "40px", flexDirection:"row", flexWrap:"wrap"}}
+                > 
+                    {
+                    people.map((x,i) => {
+                        return <GenreItem key={i} label={x.name} data={x}/> 
+                    })
+                    }
+                </div> 
+            </body> 
+        )
+
+    } else if (currentUrl == "starships") {
+        return (
+            <body style={{height: "200vh", backgroundColor: '#364156'}}>
+                <div style={{ display: 'flex', justifyContent:'center', alignItems:'center', flexDirection:"column" }} >
+                    <h1> {api_endPoint} </h1>
+                    { loading 
+                        ? <BallTriangle
+                            heigth="100"
+                            width="100"
+                            color="grey"
+                            arialLabel="loading-indicator"
+                        /> 
+                        : ""
+                    }
+                </div> 
+                <div
+                    style={{display:"flex", margin: "40px", flexDirection:"row", flexWrap:"wrap"}}
+                > 
+                    {
+                    starships.map((x,i) => {
+                        return <GenreItem key={i} label={x.name} data={x}/> 
+                    })
+                    }
+                </div> 
+            </body>
+        )
+    }  else if (loading) {
+        return ""
     } else {
-        console.log("case here 2")
-        return  <div style={{height:"100vh", backgroundColor: '#364156'}}></div>
+        return "INVALID"
     }
+    
 }
 
 export default IndexItem;
