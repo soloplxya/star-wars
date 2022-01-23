@@ -1,4 +1,5 @@
 import Card from "@material-ui/core/Card";
+import { CardActionArea } from "@material-ui/core";
 import CardContent from "@material-ui/core/CardContent";
 import Modal from "react-modal";
 import Typography from "@material-ui/core/Typography";
@@ -28,9 +29,12 @@ const StarshipItem = (props) => {
     }
 
     return (
+      <div>
+          <CardActionArea>  
             <Card
               style={{
               width: 200,
+              height: 100,
               margin: "20px",
               border: "1px solid black"
               }}
@@ -44,35 +48,37 @@ const StarshipItem = (props) => {
                   { props.label } 
                 </Typography>
               </CardContent>
-              <Modal
-                isOpen={isOpen}
-                onRequestClose={toggleModal}
-                contentLabel="editDialog"
-                style={customStyles}> 
-                <head> props.label </head>
-                <body> 
-                <div className="card_info_people">
-                  <div>
-                    {props.starship.name}
-                  </div>
-                  <div>
-                    Model: {props.starship.model}
-                  </div>
-                  <div>
-                    Manufacturer: {props.starship.manufacturer}
-                  </div>
-                  <div>
-                    Cost In Credits: ${props.starship.cost_in_credits}
-                  </div>
-                  <div> 
-                    Passengers: { props.starship.passengers}</div>
-                  <div>
-                    Length: { props.starship.length} cm
-                  </div>
-                </div> 
-                </body>
-              </Modal>  
-            </Card>     
+            </Card>  
+          </CardActionArea>
+          <Modal
+              isOpen={isOpen}
+              onRequestClose={toggleModal}
+              contentLabel="editDialog"
+              style={customStyles}> 
+              <head> props.label </head>
+              <body> 
+              <div className="card_info_people" style={{marginBottom: "20px"}}>
+                <div style={{display: "flex", justifyContent: "center"}}>
+                  <b><h2>{props.starship.name}</h2></b>
+                </div>
+                <div>
+                  Model: {props.starship.model}
+                </div>
+                <div>
+                  Manufacturer: {props.starship.manufacturer}
+                </div>
+                <div>
+                  Cost In Credits: ${props.starship.cost_in_credits}
+                </div>
+                <div> 
+                  Passengers: { props.starship.passengers}</div>
+                <div>
+                  Length: { props.starship.length} cm
+                </div>
+              </div> 
+              </body>
+            </Modal>
+        </div>      
     );
 }
 

@@ -4,6 +4,7 @@ import { useEffect, useState, useRef } from "react";
 import PersonItem from '../components/genre/PersonItem';
 import StarshipItem from '../components/genre/StarshipItem'
 import { BallTriangle } from 'react-loader-spinner';
+import styles from '../styles/IndexItem.module.css'
 
 
 const IndexItem = (context) => {
@@ -59,7 +60,7 @@ const IndexItem = (context) => {
         return (
             <body style={{height: "200vh", backgroundColor: '#000'}}>
                 <div style={{ display: 'flex', justifyContent:'center', alignItems:'center', flexDirection:"column"}} >
-                    <h1 style={{ color: "#FFF"}}> {api_endPoint} </h1> 
+                    <h1 style={{ color: "#FFF"}} className={styles.h1}> {api_endPoint} </h1> 
                     { loading 
                         ? <BallTriangle
                             heigth="100"
@@ -78,7 +79,7 @@ const IndexItem = (context) => {
                         return <PersonItem key={i} label={x.name} person={x}/> 
                     })
                     }
-                </div> 
+                </div>
             </body> 
         )
 
@@ -86,7 +87,7 @@ const IndexItem = (context) => {
         return (
             <body style={{height: "200vh", backgroundColor: '#000'}}>
                 <div style={{ display: 'flex', justifyContent:'center', alignItems:'center', flexDirection:"column" }} >
-                    <h1 style={{ color: "#FFF"}}> {api_endPoint} </h1>
+                    <h1 style={{ color: "#FFF"}} className={styles.h1}> {api_endPoint} </h1>
                     { loading 
                         ? <BallTriangle
                             heigth="100"
