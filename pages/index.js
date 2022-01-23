@@ -8,7 +8,7 @@ export default function Home() {
       <main className={styles.main} 
             style={{
                 div: "100vh", 
-                backgroundColor: "#1D3557"}}
+                backgroundColor: "#000"}}
       >
         <Image 
             src="/images/starwars_logo.png"

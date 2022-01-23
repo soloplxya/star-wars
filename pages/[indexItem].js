@@ -1,7 +1,8 @@
 import axios from "axios"; 
 import { useRouter } from 'next/router';
 import { useEffect, useState, useRef } from "react"; 
-import GenreItem from '../components/genre/genreItem';
+import PersonItem from '../components/genre/PersonItem';
+import StarshipItem from '../components/genre/StarshipItem'
 import { BallTriangle } from 'react-loader-spinner';
 
 
@@ -56,9 +57,9 @@ const IndexItem = (context) => {
 
     if (currentUrl == "people" ) {
         return (
-            <body style={{height: "200vh", backgroundColor: '#364156'}}>
+            <body style={{height: "200vh", backgroundColor: '#000'}}>
                 <div style={{ display: 'flex', justifyContent:'center', alignItems:'center', flexDirection:"column"}} >
-                    <h1> {api_endPoint} </h1> 
+                    <h1 style={{ color: "#FFF"}}> {api_endPoint} </h1> 
                     { loading 
                         ? <BallTriangle
                             heigth="100"
@@ -70,11 +71,11 @@ const IndexItem = (context) => {
                     }
                 </div> 
                 <div
-                    style={{display:"flex", margin: "40px", flexDirection:"row", flexWrap:"wrap"}}
+                    style={{display:"flex", margin: "40px", justifyContent:'center', flexDirection:"row", flexWrap:"wrap"}}
                 > 
                     {
                     people.map((x,i) => {
-                        return <GenreItem key={i} label={x.name} data={x}/> 
+                        return <PersonItem key={i} label={x.name} person={x}/> 
                     })
                     }
                 </div> 
@@ -83,9 +84,9 @@ const IndexItem = (context) => {
 
     } else if (currentUrl == "starships") {
         return (
-            <body style={{height: "200vh", backgroundColor: '#364156'}}>
+            <body style={{height: "200vh", backgroundColor: '#000'}}>
                 <div style={{ display: 'flex', justifyContent:'center', alignItems:'center', flexDirection:"column" }} >
-                    <h1> {api_endPoint} </h1>
+                    <h1 style={{ color: "#FFF"}}> {api_endPoint} </h1>
                     { loading 
                         ? <BallTriangle
                             heigth="100"
@@ -97,11 +98,11 @@ const IndexItem = (context) => {
                     }
                 </div> 
                 <div
-                    style={{display:"flex", margin: "40px", flexDirection:"row", flexWrap:"wrap"}}
+                    style={{display:"flex", margin: "40px", justifyContent:'center', flexDirection:"row", flexWrap:"wrap"}}
                 > 
                     {
                     starships.map((x,i) => {
-                        return <GenreItem key={i} label={x.name} data={x}/> 
+                        return <StarshipItem key={i} label={x.name} starship={x}/> 
                     })
                     }
                 </div> 

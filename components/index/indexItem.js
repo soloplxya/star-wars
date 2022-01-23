@@ -18,10 +18,11 @@ const IndexItem = (props) => {
         >
             <Card
               style={{
-              width: 200,
+              width: 300,
               margin: "20px",
-              backgroundColor: "transparent",
-              border: "1px solid black"
+              backgroundColor: "white",
+              border: "1px solid white",
+              textAlign: "center",
               }}
             >
               <CardContent>

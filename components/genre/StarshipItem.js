@@ -5,9 +5,8 @@ import Typography from "@material-ui/core/Typography";
 import { useState } from "react";  
 
 
-const GenreItem = (props) => {
+const StarshipItem = (props) => {
     // styles
-    const [keys, setKeys] = useState([]);
     const [isOpen, setIsOpen] = useState(false);
     const customStyles = {
       content: {
@@ -17,19 +16,14 @@ const GenreItem = (props) => {
         right: 'auto',
         bottom: 'auto',
         marginRight: '-50%',
-        background: "#A9927D", 
+        background: "#000", 
         transform: 'translate(-50%, -50%)',
         border: "solid black 2px",
+        color: "#FFF",
       },
     };
 
     function toggleModal() {
-      const temp = [];
-      for (const property in props.data) {
-        temp.push(property); 
-        console.log(`${property}: ${props.data[property]}`);
-      }
-      setKeys(temp);
       setIsOpen(!isOpen);
     }
 
@@ -38,7 +32,6 @@ const GenreItem = (props) => {
               style={{
               width: 200,
               margin: "20px",
-              backgroundColor: "transparent",
               border: "1px solid black"
               }}
               onClick={toggleModal}
@@ -56,13 +49,31 @@ const GenreItem = (props) => {
                 onRequestClose={toggleModal}
                 contentLabel="editDialog"
                 style={customStyles}> 
-                {  keys.map((x,i) => {
-                      return x;
-                })
-                }
+                <head> props.label </head>
+                <body> 
+                <div className="card_info_people">
+                  <div>
+                    {props.starship.name}
+                  </div>
+                  <div>
+                    Model: {props.starship.model}
+                  </div>
+                  <div>
+                    Manufacturer: {props.starship.manufacturer}
+                  </div>
+                  <div>
+                    Cost In Credits: ${props.starship.cost_in_credits}
+                  </div>
+                  <div> 
+                    Passengers: { props.starship.passengers}</div>
+                  <div>
+                    Length: { props.starship.length} cm
+                  </div>
+                </div> 
+                </body>
               </Modal>  
             </Card>     
     );
 }
 
-export default GenreItem;
+export default StarshipItem;
