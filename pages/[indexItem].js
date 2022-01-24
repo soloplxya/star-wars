@@ -69,6 +69,32 @@ const IndexItem = () => {
            handleSubmit(e.target.value);
         }
      }
+
+     const displayedItems = () => {
+         if (api_endPoint == "people") {
+             return ( 
+             <div
+                style={{display:"flex", margin: "40px", justifyContent:'center', flexDirection:"row", flexWrap:"wrap"}}
+             > 
+                {
+                people.map((x,i) => {
+                    return <PersonItem key={i} label={x.name} person={x}/> 
+                })
+                }
+            </div>)
+         } else if (api_endPoint == "starships") {
+            return ( 
+                <div
+                style={{display:"flex", margin: "40px", justifyContent:'center', flexDirection:"row", flexWrap:"wrap"}}
+            > 
+                {
+                starships.map((x,i) => {
+                    return <StarshipItem key={i} label={x.name} starship={x}/> 
+                })
+                }
+            </div> )
+         }
+     }
       
 
     // component did mount 
@@ -79,78 +105,38 @@ const IndexItem = () => {
 
 
 
-    if (currentUrl == "people" ) {
-        return (
-            <body style={{height: "200vh", backgroundColor: '#000'}}>
-                <div style={{ display: 'flex', justifyContent:'center', alignItems:'center', flexDirection:"column"}} >
-                    <h1 style={{ color: "#FFF"}} className={styles.h1}> {api_endPoint} </h1> 
-                    { loading 
-                        ? <BallTriangle
-                            heigth="100"
-                            width="100"
-                            color="grey"
-                            arialLabel="loading-indicator"
-                        /> 
-                        : <form>
-                            <div style={{display: "flex", justifyContent:"center"}}> 
-                            <TextField 
-                                className={classes.root}
-                                inputProps={{ className: classes.input }}
-                                id="outline-required" 
-                                label="Search" 
-                                variant="filled" 
-                                onKeyDown={e => keyPress(e)}
-                                focused
-                            />
-                            </div>
-                        </form>
-                    }
-                </div> 
-                <div
-                    style={{display:"flex", margin: "40px", justifyContent:'center', flexDirection:"row", flexWrap:"wrap"}}
-                > 
-                    {
-                    people.map((x,i) => {
-                        return <PersonItem key={i} label={x.name} person={x}/> 
-                    })
-                    }
-                </div>
-            </body> 
-        )
-
-    } else if (currentUrl == "starships") {
-        return (
-            <body style={{height: "200vh", backgroundColor: '#000'}}>
-                <div style={{ display: 'flex', justifyContent:'center', alignItems:'center', flexDirection:"column" }} >
-                    <h1 style={{ color: "#FFF"}} className={styles.h1}> {api_endPoint} </h1>
-                    { loading 
-                        ? <BallTriangle
-                            heigth="100"
-                            width="100"
-                            color="grey"
-                            arialLabel="loading-indicator"
-                        /> 
-                        : ""
-                    }
-                </div> 
-                <div
-                    style={{display:"flex", margin: "40px", justifyContent:'center', flexDirection:"row", flexWrap:"wrap"}}
-                > 
-                    {
-                    starships.map((x,i) => {
-                        return <StarshipItem key={i} label={x.name} starship={x}/> 
-                    })
-                    }
-                </div> 
-            </body>
-        )
-    } else if (loading) {
-        return ""
-    } else {
-        return "INVALID"
-    }
     
+    return (
+        <body style={{height: "200vh", backgroundColor: '#000'}}>
+            <div style={{ display: 'flex', justifyContent:'center', alignItems:'center', flexDirection:"column"}} >
+                <h1 style={{ color: "#FFF"}} className={styles.h1}> {api_endPoint} </h1> 
+                { loading 
+                    ? <BallTriangle
+                        heigth="100"
+                        width="100"
+                        color="grey"
+                        arialLabel="loading-indicator"
+                    /> 
+                    : <form>
+                        <div style={{display: "flex", justifyContent:"center"}}> 
+                        <TextField 
+                            className={classes.root}
+                            inputProps={{ className: classes.input }}
+                            id="outline-required" 
+                            label="Search" 
+                            variant="filled" 
+                            onKeyDown={e => keyPress(e)}
+                            focused
+                        />
+                        </div>
+                    </form>
+                }
+            </div> 
+            { displayedItems() }
+        </body> 
+    )
 }
+           
 
 
 export default IndexItem;
