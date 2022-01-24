@@ -38,8 +38,6 @@ const PersonItem = (props) => {
 
     }
 
-
-
     function toggleModal() {
       setIsOpen(!isOpen);
     }
@@ -94,9 +92,9 @@ const PersonItem = (props) => {
                 Hair color: {props.person.hair_color}
               </div>
               <div> 
-                Mass: { props.person.mass} kg </div>
+                Mass: {props.person.mass} kg </div>
               <div>
-                Height: { props.person.height} cm
+                Height: {props.person.height} cm
               </div>
             </div> 
             </body>

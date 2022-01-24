@@ -10,6 +10,8 @@ import { BallTriangle } from 'react-loader-spinner';
 import TextField from '@material-ui/core/TextField';
 import { makeStyles } from "@material-ui/core/styles";
 import styles from '../styles/IndexItem.module.css';
+import { TiArrowBackOutline } from 'react-icons/ti';
+import Link from "next/link";
 
 
 
@@ -76,6 +78,7 @@ const IndexItem = () => {
         }
      }
 
+     // displayed genre items 
      const displayedItems = () => {
          if (api_endPoint == "people") {
              return ( 
@@ -141,6 +144,14 @@ const IndexItem = () => {
     return (
         <body style={{height: "200vh", backgroundColor: '#14213D'}}>
             <div style={{ display: 'flex', justifyContent:'center', alignItems:'center', flexDirection:"column"}} >
+                <div style={{ position: "absolute", left: "20px", top: "20px", width: "20px"}}> 
+                    <Link href="/">
+                        <TiArrowBackOutline 
+                            size="25px"
+                            color="white"
+                        /> 
+                    </Link> 
+                </div>
                 <h1 style={{ color: "#E5E5E5"}} className={styles.h1}> {api_endPoint} </h1> 
                 { loading 
                     ? <BallTriangle
