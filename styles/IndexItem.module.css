@@ -1,3 +1,7 @@
 .h1:first-letter {
     text-transform: capitalize;
 }
+
+.inputBorder {
+    border-color: #FFF !important;
+}

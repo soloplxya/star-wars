@@ -14,8 +14,9 @@ export default function Home() {
             src="/images/starwars_logo.png"
             width="400px"
             height="300px" 
+            priority="true"
         /> 
-        <IndexList /> 
+        <IndexList style={{ marginTop: "20px"}}/> 
       </main>
     </div>
   )
