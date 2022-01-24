@@ -168,6 +168,7 @@ const IndexItem = () => {
                                 inputProps={{ className: classes.input }}
                                 id="outline-required" 
                                 label="Search" 
+                                variant="standard"
                                 color="warning"
                                 focused
                                 onKeyDown={e => keyPress(e)}

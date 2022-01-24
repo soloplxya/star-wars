@@ -4,6 +4,7 @@ import CardContent from "@material-ui/core/CardContent";
 import Modal from "react-modal";
 import Typography from "@material-ui/core/Typography";
 import { useState } from "react";  
+import { AiOutlineClose } from "react-icons/ai"
 
 
 const PlanetItem = (props) => {
@@ -61,6 +62,13 @@ const PlanetItem = (props) => {
               <head> props.label </head>
               <body> 
               <div className="card_info_people" style={{marginBottom: "20px"}}>
+                <AiOutlineClose
+                  type="button"
+                  className="close-icon"
+                  onClick={toggleModal}
+                  style={{ float: "right" }}
+                  color="white"
+                />
                 <div style={{display: "flex", justifyContent: "center"}}>
                   <b><h2>{props.planet.name}</h2></b>
                 </div>

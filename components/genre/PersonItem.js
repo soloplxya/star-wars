@@ -4,7 +4,7 @@ import { CardActionArea } from "@material-ui/core";
 import Modal from "react-modal";
 import Typography from "@material-ui/core/Typography";
 import { useState } from "react"; 
-import styles from '../../styles/Card.module.css'
+import { AiOutlineClose } from "react-icons/ai"
 
 
 const PersonItem = (props) => {
@@ -79,6 +79,13 @@ const PersonItem = (props) => {
             <head> props.label </head>
             <body> 
             <div style={cardDivStyle}>
+              <AiOutlineClose
+                type="button"
+                className="close-icon"
+                onClick={toggleModal}
+                style={{ float: "right" }}
+                color="white"
+              />
               <div style={{display: "flex", justifyContent: "center"}}>
                 <b><h2>{props.person.name}</h2></b>
               </div>

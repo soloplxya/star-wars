@@ -4,6 +4,7 @@ import CardContent from "@material-ui/core/CardContent";
 import Modal from "react-modal";
 import Typography from "@material-ui/core/Typography";
 import { useState } from "react";  
+import { AiOutlineClose } from "react-icons/ai"
 
 
 const SpeciesItem = (props) => {
@@ -54,10 +55,17 @@ const SpeciesItem = (props) => {
             </Card>  
           </CardActionArea>
           <Modal
-              isOpen={isOpen}
-              onRequestClose={toggleModal}
-              contentLabel="editDialog"
-              style={customStyles}> 
+            isOpen={isOpen}
+            onRequestClose={toggleModal}
+            contentLabel="editDialog"
+            style={customStyles}> 
+            <AiOutlineClose
+              type="button"
+              className="close-icon"
+              onClick={toggleModal}
+              style={{ float: "right" }}
+              color="white"
+            />
               <head> props.label </head>
               <body> 
               <div className="card_info_people" style={{marginBottom: "20px"}}>

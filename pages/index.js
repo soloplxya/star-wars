@@ -1,4 +1,3 @@
-import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import IndexList from '../components/index/indexList'
 
@@ -10,12 +9,12 @@ export default function Home() {
                 div: "100vh", 
                 backgroundColor: "#14213D"}}
       >
-        <Image 
+        <img 
             src="/images/starwars_logo.png"
             width="300px"
             height="200px" 
-            priority="true"
-        /> 
+            alt="alternatetext">
+        </img>
         <IndexList style={{ marginTop: "20px"}}/> 
       </main>
     </div>
