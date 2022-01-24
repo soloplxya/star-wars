@@ -18,10 +18,10 @@ const PersonItem = (props) => {
         right: 'auto',
         bottom: 'auto',
         marginRight: '-50%',
-        background: "#000", 
+        background: "#14213D", 
         borderRadius: "9px",
         transform: 'translate(-50%, -50%)',
-        border: "solid black 2px",
+        border: "solid black 4px",
         color: "#FFF",
         display: "flex",
         flexDirection: "column",
@@ -50,11 +50,14 @@ const PersonItem = (props) => {
               <Card
                 variant="outlined"
                 style={{
+                  width: 200,
+                  height: 100,
                   margin: "20px",
-                  border: "1px solid black",
-                  width: "200px", 
-                  height: "100px"
+                  border: "3px solid black", 
+                  boxShadow: "2px 2px 5px #FCA311",
+                  backgroundColor: "#E5E5E5"
                 }}
+                variant="outlined"
                 onClick={toggleModal}
               >
             

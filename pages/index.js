@@ -8,12 +8,12 @@ export default function Home() {
       <main className={styles.main} 
             style={{
                 div: "100vh", 
-                backgroundColor: "#000"}}
+                backgroundColor: "#14213D"}}
       >
         <Image 
             src="/images/starwars_logo.png"
-            width="400px"
-            height="300px" 
+            width="300px"
+            height="200px" 
             priority="true"
         /> 
         <IndexList style={{ marginTop: "20px"}}/> 

@@ -17,9 +17,9 @@ const SpeciesItem = (props) => {
         right: 'auto',
         bottom: 'auto',
         marginRight: '-50%',
-        background: "#000", 
+        background: "#14213D", 
         transform: 'translate(-50%, -50%)',
-        border: "solid black 2px",
+        border: "solid black 4px",
         color: "#FFF",
       },
     };
@@ -33,11 +33,14 @@ const SpeciesItem = (props) => {
           <CardActionArea>  
             <Card
               style={{
-              width: 200,
-              height: 100,
-              margin: "20px",
-              border: "1px solid black"
+                width: 200,
+                height: 100,
+                margin: "20px",
+                border: "3px solid black", 
+                boxShadow: "2px 2px 5px #FCA311",
+                backgroundColor: "#E5E5E5"
               }}
+              variant="outlined"
               onClick={toggleModal}
             >
               <CardContent>

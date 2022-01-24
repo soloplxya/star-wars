@@ -1,11 +1,11 @@
 import Card from "@material-ui/core/Card";
+import { CardActionArea } from "@material-ui/core";
 import CardContent from "@material-ui/core/CardContent";
-import Link from "next/link"
+import Link from "next/link";
 import Typography from "@material-ui/core/Typography";
 
 
 const IndexItem = (props) => {
-    const hrefLink = "/" + props.label; 
     return (
         <Link
           href={{
@@ -16,24 +16,27 @@ const IndexItem = (props) => {
           }}
           as={`/${props.label}`}
         >
-            <Card
-              style={{
-              width: 300,
-              margin: "20px",
-              backgroundColor: "white",
-              border: "1px solid white",
-              textAlign: "center",
-              }}
-            >
-              <CardContent>
-                <Typography 
-                  variant="h5" 
-                  component="h2"
-                  >
-                  { props.label } 
-                </Typography>
-              </CardContent>
-            </Card>        
+            <CardActionArea> 
+              <Card
+               style={{
+                  width: 200,
+                  height: 100,
+                  margin: "20px",
+                  border: "3px solid black", 
+                  boxShadow: "2px 2px 5px #FCA311",
+                  backgroundColor: "#E5E5E5"
+                }}
+              >
+                <CardContent>
+                  <Typography 
+                    variant="h5" 
+                    component="h2"
+                    >
+                    { props.label } 
+                  </Typography>
+                </CardContent>
+              </Card>    
+            </CardActionArea>    
         </Link> 
     );
 }

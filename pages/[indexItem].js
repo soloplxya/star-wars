@@ -5,10 +5,10 @@ import PersonItem from '../components/genre/PersonItem';
 import StarshipItem from '../components/genre/StarshipItem';
 import SpeciesItem from '../components/genre/SpeciesItem';
 import PlanetItem from "../components/genre/PlanetItem";
+import NotFound from "../components/errors/404NotFound";
 import { BallTriangle } from 'react-loader-spinner';
 import TextField from '@material-ui/core/TextField';
-import { makeStyles, withStyles } from "@material-ui/core/styles";
-import PropTypes from "prop-types";
+import { makeStyles } from "@material-ui/core/styles";
 import styles from '../styles/IndexItem.module.css';
 
 
@@ -16,11 +16,11 @@ import styles from '../styles/IndexItem.module.css';
 const IndexItem = () => {
     const { asPath } = useRouter(); 
     const api_endPoint = asPath.substring(1,asPath.length).toLocaleLowerCase().toString();
-    const didmount = useRef();
      
     const [loading, setLoading] = useState(false);
     const [currentUrl, setCurrentUrl] = useState("");
     const [query, setQuery] = useState("");
+    const [notFound, setNotFound] = useState(false);
 
     // types of data 
     const [people, setPeople] = useState([]); 
@@ -46,6 +46,7 @@ const IndexItem = () => {
             "https://swapi.dev/api/" + api_endPoint + `?search=${query}`
             ).then(response => {
                 setLoading(false); 
+                setNotFound(false);
                 if (api_endPoint == "people") {
                     setPeople(response.data.results);
                 } else if (api_endPoint == "starships") {
@@ -54,9 +55,12 @@ const IndexItem = () => {
                     setSpecies(response.data.results);
                 } else if (api_endPoint == "planets") {
                     setPlanets(response.data.results);
-                }
+                } 
         }).catch(error => {
+            setLoading(false);
             console.log("Task retrieving error", error);
+            setNotFound(true);
+            return;
         })
     }
 
@@ -113,6 +117,14 @@ const IndexItem = () => {
                 }
                 </div>
             )
+         } else if (loading) {
+             return (
+                 <div></div>
+             )
+         } else if (notFound) {
+             return (
+                 <NotFound /> 
+             )
          }
      }
       
@@ -127,9 +139,9 @@ const IndexItem = () => {
 
     
     return (
-        <body style={{height: "200vh", backgroundColor: '#000'}}>
+        <body style={{height: "200vh", backgroundColor: '#14213D'}}>
             <div style={{ display: 'flex', justifyContent:'center', alignItems:'center', flexDirection:"column"}} >
-                <h1 style={{ color: "#FFF"}} className={styles.h1}> {api_endPoint} </h1> 
+                <h1 style={{ color: "#E5E5E5"}} className={styles.h1}> {api_endPoint} </h1> 
                 { loading 
                     ? <BallTriangle
                         heigth="100"
@@ -137,19 +149,21 @@ const IndexItem = () => {
                         color="grey"
                         arialLabel="loading-indicator"
                     /> 
-                    : <form>
-                        <div style={{display: "flex", justifyContent:"center"}}> 
-                        <TextField 
-                            className={classes.root}
-                            inputProps={{ className: classes.input }}
-                            id="outline-required" 
-                            label="Search" 
-                            variant="filled" 
-                            onKeyDown={e => keyPress(e)}
-                            focused
-                        />
-                        </div>
-                    </form>
+                    : !notFound 
+                        ? <form>
+                            <div style={{display: "flex", justifyContent:"center"}}> 
+                            <TextField 
+                                className={classes.root}
+                                inputProps={{ className: classes.input }}
+                                id="outline-required" 
+                                label="Search" 
+                                color="warning"
+                                focused
+                                onKeyDown={e => keyPress(e)}
+                            />
+                            </div>
+                         </form>
+                         :<div> </div> 
                 }
             </div> 
             { displayedItems() }
