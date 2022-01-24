@@ -2,12 +2,14 @@ import axios from "axios";
 import { useRouter } from 'next/router';
 import { useEffect, useState, useRef } from "react"; 
 import PersonItem from '../components/genre/PersonItem';
-import StarshipItem from '../components/genre/StarshipItem'
+import StarshipItem from '../components/genre/StarshipItem';
+import SpeciesItem from '../components/genre/SpeciesItem';
+import PlanetItem from "../components/genre/PlanetItem";
 import { BallTriangle } from 'react-loader-spinner';
-import TextField from '@material-ui/core/TextField'
+import TextField from '@material-ui/core/TextField';
 import { makeStyles, withStyles } from "@material-ui/core/styles";
 import PropTypes from "prop-types";
-import styles from '../styles/IndexItem.module.css'
+import styles from '../styles/IndexItem.module.css';
 
 
 
@@ -16,9 +18,9 @@ const IndexItem = () => {
     const api_endPoint = asPath.substring(1,asPath.length).toLocaleLowerCase().toString();
     const didmount = useRef();
      
-    const [loading, setLoading] = useState(false)
-    const [currentUrl, setCurrentUrl] = useState("")
-    const [query, setQuery] = useState("")
+    const [loading, setLoading] = useState(false);
+    const [currentUrl, setCurrentUrl] = useState("");
+    const [query, setQuery] = useState("");
 
     // types of data 
     const [people, setPeople] = useState([]); 
@@ -37,7 +39,7 @@ const IndexItem = () => {
     const classes = useStyles(); 
 
 
-    // fetchData from different api 
+    // fetchData from different api links
     function fetchData(query) {
         setLoading(true); 
         axios.get(
@@ -54,7 +56,7 @@ const IndexItem = () => {
                     setPlanets(response.data.results);
                 }
         }).catch(error => {
-            console.log("Task retrieving error", error)
+            console.log("Task retrieving error", error);
         })
     }
 
@@ -73,26 +75,44 @@ const IndexItem = () => {
      const displayedItems = () => {
          if (api_endPoint == "people") {
              return ( 
-             <div
-                style={{display:"flex", margin: "40px", justifyContent:'center', flexDirection:"row", flexWrap:"wrap"}}
-             > 
-                {
-                people.map((x,i) => {
-                    return <PersonItem key={i} label={x.name} person={x}/> 
-                })
-                }
-            </div>)
+                <div style={{display:"flex", margin: "40px", justifyContent:'center', flexDirection:"row", flexWrap:"wrap"}}> 
+                    {
+                    people.map((x,i) => {
+                        return <PersonItem key={i} label={x.name} person={x}/> 
+                    })
+                    }
+                </div>
+            )
          } else if (api_endPoint == "starships") {
             return ( 
-                <div
-                style={{display:"flex", margin: "40px", justifyContent:'center', flexDirection:"row", flexWrap:"wrap"}}
-            > 
+                <div style={{display:"flex", margin: "40px", justifyContent:'center', flexDirection:"row", flexWrap:"wrap"}}> 
                 {
                 starships.map((x,i) => {
                     return <StarshipItem key={i} label={x.name} starship={x}/> 
                 })
                 }
-            </div> )
+                </div> 
+            )
+         } else if (api_endPoint == "species") {
+             return (
+                <div style={{display:"flex", margin: "40px", justifyContent:'center', flexDirection:"row", flexWrap:"wrap"}}> 
+                {
+                species.map((x,i) => {
+                    return <SpeciesItem key={i} label={x.name} species={x}/> 
+                })
+                }
+            </div>
+             )
+         } else if (api_endPoint == "planets") {
+            return (
+                <div style={{display:"flex", margin: "40px", justifyContent:'center', flexDirection:"row", flexWrap:"wrap"}}> 
+                {
+                planets.map((x,i) => {
+                    return <PlanetItem key={i} label={x.name} planet={x}/> 
+                })
+                }
+                </div>
+            )
          }
      }
       
