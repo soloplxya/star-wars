@@ -18,17 +18,12 @@ You can start editing the page by modifying `pages/index.js`. The page auto-upda
 
 The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
 
-## Learn More
+## User Guide
 
-To learn more about Next.js, take a look at the following resources:
+* Starwars soloplxya allows you to get information about the characters, planets and starships easily. It makes use of the [swapi](https://swapi.dev/) to query starwars related data. 
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+![image](https://user-images.githubusercontent.com/69782911/150838445-3b013bdf-374f-4d82-aa61-6e36c6b49b84.png)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+* It allows you to perform a search query as well, and thus you can easily find the character... that you are looking for. 
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+![image](https://user-images.githubusercontent.com/69782911/150838861-f1a47c84-7f91-43ba-8b72-66a50d237b8c.png)
