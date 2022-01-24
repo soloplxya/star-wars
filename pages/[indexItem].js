@@ -11,7 +11,7 @@ import styles from '../styles/IndexItem.module.css'
 
 
 
-const IndexItem = (props) => {
+const IndexItem = () => {
     const { asPath } = useRouter(); 
     const api_endPoint = asPath.substring(1,asPath.length).toLocaleLowerCase().toString();
     const didmount = useRef();
@@ -37,6 +37,28 @@ const IndexItem = (props) => {
     const classes = useStyles(); 
 
 
+    // fetchData from different api 
+    function fetchData(query) {
+        setLoading(true); 
+        axios.get(
+            "https://swapi.dev/api/" + api_endPoint + `?search=${query}`
+            ).then(response => {
+                setLoading(false); 
+                if (api_endPoint == "people") {
+                    setPeople(response.data.results);
+                } else if (api_endPoint == "starships") {
+                    setStarships(response.data.results);
+                } else if (api_endPoint == "species") {
+                    setSpecies(response.data.results);
+                } else if (api_endPoint == "planets") {
+                    setPlanets(response.data.results);
+                }
+        }).catch(error => {
+            console.log("Task retrieving error", error)
+        })
+    }
+
+    // search function 
     function handleSubmit(queryStatement) {
         setQuery(queryStatement);
         fetchData(queryStatement);
@@ -49,55 +71,10 @@ const IndexItem = (props) => {
      }
       
 
-
-    // fetchData from different api 
-    function fetchData(query) {
-        setLoading(true); 
-        if (api_endPoint == "people") {
-            axios.get(
-                "https://swapi.dev/api/" + api_endPoint + `?search=${query}`
-                ).then(response => {
-                    setLoading(false); 
-                    console.log(response.data.results)
-                    setPeople(response.data.results)
-            }).catch(error => {
-                console.log("Task retrieving error", error)
-            })
-        } else if (api_endPoint == "starships") {
-            axios.get(
-                "https://swapi.dev/api/" + api_endPoint + `?search=${query}`
-                ).then(response => {
-                    setLoading(false); 
-                    setStarships(response.data.results)
-            }).catch(error => {
-                console.log("Task retrieving error", error)
-            })
-        } else if (api_endPoint == "planets") {
-            axios.get(
-                "https://swapi.dev/api/" + api_endPoint + `?search=${query}`
-                ).then(response => {
-                    setPlanets(response.data.results)
-                    setLoading(false); 
-            }).catch(error => {
-                console.log("Task retrieving error", error)
-            })
-        } else if (api_endPoint == "species") {
-            axios.get(
-                "https://swapi.dev/api/" + api_endPoint + `?search=${query}`
-                ).then(response => {
-                    setSpecies(response.data.results)
-                    setLoading(false); 
-            }).catch(error => {
-                console.log("Task retrieving error", error)
-            })
-        }
-    }
-
- 
     // component did mount 
     useEffect(() => {
         setCurrentUrl(api_endPoint)
-        fetchData("")
+        fetchData("", api_endPoint)
     }, [api_endPoint]); 
 
 
