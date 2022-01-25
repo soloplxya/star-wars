@@ -9,8 +9,12 @@ import NotFound from "../components/errors/404NotFound";
 import { BallTriangle } from 'react-loader-spinner';
 import TextField from '@material-ui/core/TextField';
 import { makeStyles } from "@material-ui/core/styles";
+import IconButton from "@material-ui/core/IconButton";
+import InputAdornment from "@material-ui/core/InputAdornment";
+import { SearchOutlined } from '@material-ui/icons';
 import styles from '../styles/IndexItem.module.css';
 import { TiArrowBackOutline } from 'react-icons/ti';
+import { FcSearch } from 'react-icons/fc';
 import Link from "next/link";
 
 
@@ -167,11 +171,19 @@ const IndexItem = () => {
                                 className={classes.root}
                                 inputProps={{ className: classes.input }}
                                 id="outline-required" 
-                                label="Search" 
                                 variant="standard"
                                 color="warning"
                                 focused
                                 onKeyDown={e => keyPress(e)}
+                                InputProps={{
+                                    startAdornment: (
+                                        <InputAdornment>
+                                          <IconButton>
+                                            <FcSearch />
+                                          </IconButton>
+                                        </InputAdornment>
+                                      )
+                                }}
                             />
                             </div>
                          </form>

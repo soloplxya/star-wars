@@ -19,12 +19,13 @@ const IndexItem = (props) => {
             <CardActionArea> 
               <Card
                style={{
-                  width: 200,
+                  width: 300,
                   height: 100,
                   margin: "20px",
                   border: "3px solid black", 
                   boxShadow: "2px 2px 5px #FCA311",
-                  backgroundColor: "#E5E5E5"
+                  backgroundColor: "#E5E5E5",
+                  textAlign: "center",
                 }}
               >
                 <CardContent>
