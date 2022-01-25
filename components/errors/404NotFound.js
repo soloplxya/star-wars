@@ -1,6 +1,7 @@
 import Link from "next/link"
 import { TiArrowBackOutline } from "react-icons/ti";
 
+/**  Error component that is displayed when the url cannot be found */
 const NotFound = () => {
     return  (
         <div style={{display: "flex", justifyContent: "center", margin:"auto"}}> 

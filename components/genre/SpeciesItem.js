@@ -25,6 +25,7 @@ const SpeciesItem = (props) => {
       },
     };
 
+    /** Function that is used to the toggle the species details modal */
     function toggleModal() {
       setIsOpen(!isOpen);
     }

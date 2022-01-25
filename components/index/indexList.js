@@ -1,5 +1,6 @@
 import IndexItem from "./indexItem"
 
+// List of various genres that is displayed on the homepage
 const IndexList = () => {
     return (
         <div style={{display: "flex", flexDirection: "column", marginTop: "40px"}}> 

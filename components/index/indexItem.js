@@ -4,7 +4,7 @@ import CardContent from "@material-ui/core/CardContent";
 import Link from "next/link";
 import Typography from "@material-ui/core/Typography";
 
-
+/**  Card component for the different genres in indexList */
 const IndexItem = (props) => {
     return (
         <Link

@@ -25,6 +25,7 @@ const PlanetItem = (props) => {
       },
     };
 
+    /** Function that is used to the toggle the planets details modal */
     function toggleModal() {
       setIsOpen(!isOpen);
     }

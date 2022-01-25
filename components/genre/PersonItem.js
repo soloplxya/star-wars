@@ -38,6 +38,7 @@ const PersonItem = (props) => {
 
     }
 
+    /** Function that is used to the toggle the person details modal */
     function toggleModal() {
       setIsOpen(!isOpen);
     }

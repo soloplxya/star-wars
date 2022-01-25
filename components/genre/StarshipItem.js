@@ -25,6 +25,7 @@ const StarshipItem = (props) => {
       },
     };
 
+    /** Function that is used to the toggle the starship details modal */
     function toggleModal() {
       setIsOpen(!isOpen);
     }

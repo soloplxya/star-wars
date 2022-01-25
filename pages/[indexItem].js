@@ -1,6 +1,6 @@
 import axios from "axios"; 
 import { useRouter } from 'next/router';
-import { useEffect, useState, useRef } from "react"; 
+import { useEffect, useState } from "react"; 
 import PersonItem from '../components/genre/PersonItem';
 import StarshipItem from '../components/genre/StarshipItem';
 import SpeciesItem from '../components/genre/SpeciesItem';
@@ -10,8 +10,9 @@ import { BallTriangle } from 'react-loader-spinner';
 import TextField from '@material-ui/core/TextField';
 import { makeStyles } from "@material-ui/core/styles";
 import IconButton from "@material-ui/core/IconButton";
+import Button from '@material-ui/core/Button';
 import InputAdornment from "@material-ui/core/InputAdornment";
-import { SearchOutlined } from '@material-ui/icons';
+import {isMobile} from 'react-device-detect';
 import styles from '../styles/IndexItem.module.css';
 import { TiArrowBackOutline } from 'react-icons/ti';
 import { FcSearch } from 'react-icons/fc';
@@ -23,19 +24,20 @@ const IndexItem = () => {
     const { asPath } = useRouter(); 
     const api_endPoint = asPath.substring(1,asPath.length).toLocaleLowerCase().toString();
      
+    // Utility data
     const [loading, setLoading] = useState(false);
     const [currentUrl, setCurrentUrl] = useState("");
     const [query, setQuery] = useState("");
     const [notFound, setNotFound] = useState(false);
 
-    // types of data 
+    // Types of data 
     const [people, setPeople] = useState([]); 
     const [starships, setStarships] = useState([]); 
     const [planets, setPlanets] = useState([]);
     const [species, setSpecies] = useState([]); 
 
     
-    // styles 
+    // Styles 
     const useStyles = makeStyles((theme) => ({
         input: {
           color: "#FFF",
@@ -45,7 +47,7 @@ const IndexItem = () => {
     const classes = useStyles(); 
 
 
-    // fetchData from different api links
+    /* Function that fetches data from the api endPoints based on the apiEndPoint that has been indicated */
     function fetchData(query) {
         setLoading(true); 
         axios.get(
@@ -70,7 +72,8 @@ const IndexItem = () => {
         })
     }
 
-    // search function 
+
+    // Search function 
     function handleSubmit(queryStatement) {
         setQuery(queryStatement);
         fetchData(queryStatement);
@@ -82,7 +85,7 @@ const IndexItem = () => {
         }
      }
 
-     // displayed genre items 
+     /** Function that displays the results of the search on the page */
      const displayedItems = () => {
          if (api_endPoint == "people") {
              return ( 
@@ -136,7 +139,7 @@ const IndexItem = () => {
      }
       
 
-    // component did mount 
+    /**  Similar to component did mount, will fetch the Data from the api before the function runs  */
     useEffect(() => {
         setCurrentUrl(api_endPoint)
         fetchData("", api_endPoint)
@@ -185,6 +188,15 @@ const IndexItem = () => {
                                       )
                                 }}
                             />
+                            { isMobile 
+                                ? <Button 
+                                    variant="text" 
+                                    size="small" 
+                                    style={{ marginLeft:'20px'}}
+                                    onClick={e => handleSubmit(e.target.value)}
+                                    >Submit</Button>
+                                : <div />
+                            }
                             </div>
                          </form>
                          :<div> </div> 
