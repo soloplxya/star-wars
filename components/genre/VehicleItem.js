@@ -97,7 +97,7 @@ const VehicleItem = (props) => {
                 Manufacturer: {props.vehicle.manufacturer}
               </div>
               <div>
-                Cost in credits: {props.vehicle.cost_in_credits}
+                Cost in credits: ${props.vehicle.cost_in_credits}
               </div>
               <div> 
                 Length: {props.vehicle.length} cm
