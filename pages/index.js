@@ -1,9 +1,13 @@
-import styles from '../styles/Home.module.css'
-import IndexList from '../components/index/indexList'
+import styles from '../styles/Home.module.css';
+import IndexList from '../components/index/indexList';
+import Head from 'next/head';
 
 export default function Home() {
   return (
     <div>
+      <Head>
+        <link rel="shortcut icon" href="/favicon-32x32.png" />
+      </Head>
       <main className={styles.main} 
             style={{
                 div: "100vh", 

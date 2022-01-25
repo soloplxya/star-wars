@@ -23,6 +23,7 @@ import Link from "next/link";
 
 
 
+
 const IndexItem = () => {
     const { asPath } = useRouter(); 
     const api_endPoint = asPath.substring(1,asPath.length).toLocaleLowerCase().toString();
@@ -93,6 +94,11 @@ const IndexItem = () => {
            handleSubmit(e.target.value);
         }
      }
+
+    // function that handles changes in input
+    function handleChange(value) {
+        setQuery(value);
+    }
 
      /** Function that displays the results of the search on the page */
      const displayedItems = () => {
@@ -199,7 +205,7 @@ const IndexItem = () => {
                     /> 
                     : !notFound 
                         ? <form>
-                            <div style={{display: "flex", justifyContent:"center"}}> 
+                            <div style={{display: "flex", justifyContent:"center", flexDirection: "column"}}> 
                             <TextField 
                                 className={classes.root}
                                 inputProps={{ className: classes.input }}
@@ -208,6 +214,7 @@ const IndexItem = () => {
                                 color="warning"
                                 focused
                                 onKeyDown={e => keyPress(e)}
+                                onChange={e => handleChange(e.target.value)}
                                 InputProps={{
                                     startAdornment: (
                                         <InputAdornment>
@@ -222,10 +229,11 @@ const IndexItem = () => {
                                 ? <Button 
                                     variant="text" 
                                     size="small" 
-                                    style={{ marginLeft:'20px'}}
-                                    onClick={e => handleSubmit(e.target.value)}
+                                    style={{ marginLeft:'20px', marginTop: "10px" }}
+                                    onClick={() => { 
+                                        handleSubmit(query)}}
                                     >Submit</Button>
-                                : <div />
+                                : <div> </div>
                             }
                             </div>
                          </form>
