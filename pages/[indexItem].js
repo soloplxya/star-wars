@@ -1,10 +1,12 @@
 import axios from "axios"; 
 import { useRouter } from 'next/router';
 import { useEffect, useState } from "react"; 
+import FilmItem from '../components/genre/FilmItem';
 import PersonItem from '../components/genre/PersonItem';
 import StarshipItem from '../components/genre/StarshipItem';
 import SpeciesItem from '../components/genre/SpeciesItem';
 import PlanetItem from "../components/genre/PlanetItem";
+import VehicleItem from "../components/genre/VehicleItem";
 import NotFound from "../components/errors/404NotFound";
 import { BallTriangle } from 'react-loader-spinner';
 import TextField from '@material-ui/core/TextField';
@@ -17,6 +19,7 @@ import styles from '../styles/IndexItem.module.css';
 import { TiArrowBackOutline } from 'react-icons/ti';
 import { FcSearch } from 'react-icons/fc';
 import Link from "next/link";
+
 
 
 
@@ -35,6 +38,8 @@ const IndexItem = () => {
     const [starships, setStarships] = useState([]); 
     const [planets, setPlanets] = useState([]);
     const [species, setSpecies] = useState([]); 
+    const [vehicles, setVehicles] = useState([]); 
+    const [films, setFilms] = useState([]);
 
     
     // Styles 
@@ -63,7 +68,11 @@ const IndexItem = () => {
                     setSpecies(response.data.results);
                 } else if (api_endPoint == "planets") {
                     setPlanets(response.data.results);
-                } 
+                } else if (api_endPoint == "films") {
+                    setFilms(response.data.results);
+                } else if (api_endPoint == "vehicles") {
+                    setVehicles(response.data.results);
+                }
         }).catch(error => {
             setLoading(false);
             console.log("Task retrieving error", error);
@@ -127,6 +136,27 @@ const IndexItem = () => {
                 }
                 </div>
             )
+         } else if (api_endPoint == "films") {
+            return (
+                <div style={{display:"flex", margin: "40px", justifyContent:'center', flexDirection:"row", flexWrap:"wrap"}}> 
+                {
+                films.map((x,i) => {
+                    return <FilmItem key={i} label={x.title} film={x}/> 
+                })
+                }
+                </div>
+            )
+         } else if (api_endPoint == "vehicles") {
+            return (
+                <div style={{display:"flex", margin: "40px", justifyContent:'center', flexDirection:"row", flexWrap:"wrap"}}> 
+                {
+                vehicles.map((x,i) => {
+                    return <VehicleItem key={i} label={x.name} vehicle={x}/> 
+                })
+                }
+                </div>
+            )
+            
          } else if (loading) {
              return (
                  <div></div>

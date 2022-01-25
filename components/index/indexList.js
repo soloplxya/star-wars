@@ -8,6 +8,8 @@ const IndexList = () => {
             <IndexItem label="Starships" /> 
             <IndexItem label="Planets" /> 
             <IndexItem label="Species" /> 
+            <IndexItem label="Films" /> 
+            <IndexItem label="Vehicles" />
         </div> 
     ); 
 }
